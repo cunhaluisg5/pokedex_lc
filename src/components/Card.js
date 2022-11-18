@@ -1,11 +1,14 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
 
 export default props = ({ object }) => {
+    const text = `Clicou na ${object.name}`;
     return (
-        <View style={styles.Container}>
+        <TouchableOpacity style={styles.Container} onPress={() => 
+            Alert.alert(text)
+        }>
             <Text style={styles.Text}>{object.name}</Text>
             <Text style={styles.Text}>{object.total}</Text>
-        </View>
+        </TouchableOpacity>
     );
 };
 
