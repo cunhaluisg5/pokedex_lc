@@ -1,51 +1,34 @@
-import React, { useState } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
 
+import Api from '../services/Api';
 import RenderList from '../components/RenderList';
 
 Home = () => {
-    const [list, setList] = useState([
-        {
-            name: '1° Geração',
-            total: '150'
-        },
-        {
-            name: '2° Geração',
-            total: '150'
-        },
-        {
-            name: '3° Geração',
-            total: '150'
-        },
-        {
-            name: '4° Geração',
-            total: '150'
-        },
-        {
-            name: '5° Geração',
-            total: '150'
-        },
-        {
-            name: '6° Geração',
-            total: '150'
-        },
-        {
-            name: '7° Geração',
-            total: '150'
-        },
-        {
-            name: '8° Geração',
-            total: '150'
-        },
-        {
-            name: '9° Geração',
-            total: '150'
-        },
-        {
-            name: '10° Geração',
-            total: '150'
-        }
-    ]);
+    const [list, setList] = useState([]);
+    const [isLoading, setIsloading] = useState(false);
+
+    useEffect(() => {
+        SearchList();
+    }, []);
+
+    const SearchList = async () => {
+        setIsloading(true);
+        await Api.get('pokedex/')
+        .then((response) => {
+            const listGeneration = response.data.results;
+            setList(listGeneration);
+        })        
+        setIsloading(false);
+}
+
+    if (isLoading) {
+        return (
+            <View style={styles.Indicator}>
+                <ActivityIndicator size="large" color='#0000ff' />
+            </View>
+        )
+    }
 
     return (
         <View style={styles.Container}>
@@ -68,7 +51,13 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         padding: 20
-    }
+    },
+    Indicator: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#ffff00',
+    },
 });
 
 export default Home;

@@ -1,13 +1,13 @@
 import { TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
 
-export default props = ({ object }) => {
-    const text = `Clicou na ${object.name}`;
+export default props = ({ object, index }) => {
+    const text = object.name.replace('original-', '').toUpperCase();
+    const message = `Clicou na Geração ${text}`;
     return (
         <TouchableOpacity style={styles.Container} onPress={() => 
-            Alert.alert(text)
+            Alert.alert(message)
         }>
-            <Text style={styles.Text}>{object.name}</Text>
-            <Text style={styles.Text}>{object.total}</Text>
+            <Text style={styles.Text}>Geração {text}</Text>
         </TouchableOpacity>
     );
 };

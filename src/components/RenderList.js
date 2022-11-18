@@ -6,11 +6,13 @@ import Card from './Card';
 export default props = ({ list }) => {
     return (
         list.map((object, index) => {
-            return (
-                <View key={index} style={styles.Container}>
-                    <Card object={object} />
-                </View>
-            );
+            if (index != 0 && index != 5 && index != 6 && index != 8 && index != 9 && index != 13 && index != 19) {
+                return (
+                    <View key={index} style={styles.Container}>
+                        <Card object={object} index={index} />
+                    </View>
+                );
+            }
         })
     )
 };
