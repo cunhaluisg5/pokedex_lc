@@ -14,7 +14,7 @@ Home = ({ navigation }) => {
 
     const SearchList = async () => {
         setIsloading(true);
-        await Api.get('pokedex/')
+        await Api.get('https://pokeapi.co/api/v2/pokedex/')
         .then((response) => {
             const listGeneration = response.data.results;
             setList(listGeneration);
