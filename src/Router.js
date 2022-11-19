@@ -4,6 +4,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import Home from './screens/Home';
+import Generation from './screens/Generation';
 
 const mainRoutes = {
     Home: {
@@ -13,6 +14,12 @@ const mainRoutes = {
             headerShown: false
         }),
     },
+    Generation: {
+        screen: Generation,
+        navigationOptions: ({ navigation }) => ({
+            title: navigation.state.params.title
+        })
+    }
 }
 
 const mainConfig = {

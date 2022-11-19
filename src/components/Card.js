@@ -1,11 +1,10 @@
-import { TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-export default props = ({ object, index }) => {
+export default props = ({ object, index, navigation }) => {
     const text = object.name.replace('original-', '').toUpperCase();
-    const message = `Clicou na Geração ${text}`;
     return (
         <TouchableOpacity style={styles.Container} onPress={() => 
-            Alert.alert(message)
+            navigation.navigate('Generation', {index: index+1, title: text})
         }>
             <Text style={styles.Text}>Geração {text}</Text>
         </TouchableOpacity>

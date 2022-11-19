@@ -4,7 +4,7 @@ import { View, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
 import Api from '../services/Api';
 import RenderList from '../components/RenderList';
 
-Home = () => {
+Home = ({ navigation }) => {
     const [list, setList] = useState([]);
     const [isLoading, setIsloading] = useState(false);
 
@@ -33,7 +33,7 @@ Home = () => {
     return (
         <View style={styles.Container}>
             <ScrollView style={styles.List}>
-                {<RenderList list={list} />}
+                {<RenderList list={list} navigation={navigation}/>}
             </ScrollView>
         </View>
     );

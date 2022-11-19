@@ -3,13 +3,13 @@ import { View, StyleSheet } from 'react-native';
 
 import Card from './Card';
 
-export default props = ({ list }) => {
+export default props = ({ list, navigation }) => {
     return (
         list.map((object, index) => {
             if (index != 0 && index != 5 && index != 6 && index != 8 && index != 9 && index != 13 && index != 19) {
                 return (
                     <View key={index} style={styles.Container}>
-                        <Card object={object} index={index} />
+                        <Card object={object} index={index} navigation={navigation}/>
                     </View>
                 );
             }
