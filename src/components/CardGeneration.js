@@ -1,7 +1,6 @@
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-export default props = ({ object, index, navigation }) => {
-    const text = object.name.replace('original-', '').toUpperCase();
+export default props = ({ object, index, navigation, text }) => {
     return (
         <TouchableOpacity style={styles.Container} onPress={() => 
             navigation.navigate('Generation', {index: index+1, title: text})

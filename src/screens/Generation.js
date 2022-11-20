@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, StyleSheet, ActivityIndicator, Image } from 'react-native';
 
 import Api from '../services/Api';
+import CardPokemon from '../components/CardPokemon';
 
 Generation = ({ navigation }) => {
     const [listGeneration, setListGeneration] = useState([]);
@@ -33,7 +34,8 @@ Generation = ({ navigation }) => {
     if (isLoading) {
         return (
             <View style={styles.Indicator}>
-                <ActivityIndicator size="large" color='#0000ff' />
+                <ActivityIndicator size='large' color='#000000' />
+                <Text style={styles.TextIndicator}>Carregando...</Text>
             </View>
         )
     }
@@ -44,17 +46,9 @@ Generation = ({ navigation }) => {
                 {listGeneration.map((object, index) => {
                     const { name, url } = object.pokemon_species;
                     const pokemonIndex = SearchIndex(url);
-                    return <View key={index}>
-                        <Text>Número: {object.entry_number}</Text>
-                        <Text>Nome: {name}</Text>
-                        <Text>URL: {url}</Text>
-                        <Image
-                            style={styles.Image}
-                            source={{
-                                uri: linkImage(pokemonIndex)
-                            }}
-                        />
-                    </View>
+                    const text = `${object.entry_number}: ${name[0].toUpperCase() + name.substring(1)}`;
+                    const image = linkImage(pokemonIndex);
+                    return <CardPokemon key={index} object={object} index={index} navigation={navigation} text={text} url={url} image={image} />
                 })}
             </ScrollView>
         </View>
@@ -64,27 +58,22 @@ Generation = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     Container: {
-        flex: 1,
-        backgroundColor: '#0000ff',
+        flex: 1
     },
     List: {
-        backgroundColor: '#87CEFA',
-        marginTop: 40,
-        marginBottom: 20,
-        marginLeft: 10,
-        marginRight: 10,
-        padding: 20
+        backgroundColor: '#DC143C',
     },
     Indicator: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#ffff00',
+        backgroundColor: '#DC143C',
     },
-    Image: {
-        width: 50,
-        height: 50,
-    },
+    TextIndicator: {
+        fontSize: 18,
+        color: '#000000',
+        fontWeight: 'bold'
+    }
 });
 
 export default Generation;

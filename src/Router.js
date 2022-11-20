@@ -17,7 +17,10 @@ const mainRoutes = {
     Generation: {
         screen: Generation,
         navigationOptions: ({ navigation }) => ({
-            title: navigation.state.params.title
+            title: navigation.state.params.title,
+            headerTitleAlign: 'center',
+            headerStyle: { backgroundColor: '#DC143C' },
+            headerTitleStyle: { color: '#000000' }
         })
     }
 }
