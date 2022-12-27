@@ -1,6 +1,6 @@
 import { View, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 
-export default props = ({ object, index, navigation, text, url, image }) => {
+export default props = ({ index, navigation, text, url, image }) => {
     return (
         <TouchableOpacity style={styles.Container} onPress={() =>
             navigation.navigate('Details', { title: text, index: index, url: url })

@@ -1,46 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, ActivityIndicator } from 'react-native';
 
 import Api from '../services/Api';
 
 Details = ({ navigation }) => {
     const [title, setTitle] = useState('');
     const [details, setDetails] = useState([]);
-    const [linkEvolutions, setLinkEvolutions] = useState(null);
-    const [evolutions, setEvolutions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
-        const { text, index, url } = navigation.state.params;
+        const { text, url } = navigation.state.params;
         setTitle(text);
         SearchDetails(url);
-        SearchEvolutions();
         setIsLoading(false);
     }, []);
 
     const SearchDetails = async (url) => {
         await Api.get(url)
             .then((response) => {
-                setLinkEvolutions(response.data.evolution_chain);
                 setDetails(response.data.flavor_text_entries);
             })
             .catch((error) => {
                 console.log('Erro: ', error)
             });
-    }
-
-    const SearchEvolutions = async () => {
-        if (linkEvolutions !== null) {
-            await Api.get(linkEvolutions)
-                .then((response) => {
-                    setEvolutions(response.data.chain);
-                    console.log('kkkk: ', response.data.chain)
-                })
-                .catch((error) => {
-                    console.log('Erro: ', error)
-                });
-        }
     }
 
     if (isLoading) {
@@ -52,23 +35,31 @@ Details = ({ navigation }) => {
         )
     }
 
-    console.log('Lista de evoluções: ', evolutions.length)
 
     return (
-        <View>
+        <ScrollView style={styles.Container}>
             {details.length > 0 &&
-                <View>
-                    <Text>{details[0].flavor_text}</Text>
-                    <Text>{details[3].flavor_text}</Text>
-                </View>
+                details.map((value, index) => {
+                    if (value.language.name === 'en') {
+                        return <View key={index}>
+                            <Text style={styles.Text}>{value.flavor_text}</Text>
+                        </View>
+                    }
+                })
             }
-        </View>
+        </ScrollView>
     )
 };
 
 const styles = StyleSheet.create({
     Container: {
-
+    },
+    Text: {
+        marginTop: 5,
+        marginBottom: 5,
+        fontSize: 15,
+        backgroundColor: '#FFB6C1',
+        padding: 10
     },
     Indicator: {
         flex: 1,
