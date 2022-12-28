@@ -11,7 +11,7 @@ export default props = ({ list, navigation }) => {
                 const text2 = `${text[0].toUpperCase() + text.substring(1)}`;
                 return (
                     <View key={index} style={styles.Container}>
-                        <CardGeneration object={object} index={index} navigation={navigation} text={text2}/>
+                        <CardGeneration object={object} index={index} navigation={navigation} text={text2} />
                     </View>
                 );
             }

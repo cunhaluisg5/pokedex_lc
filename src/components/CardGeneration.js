@@ -1,9 +1,9 @@
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-export default props = ({ object, index, navigation, text }) => {
+export default props = ({ index, navigation, text }) => {
     return (
-        <TouchableOpacity style={styles.Container} onPress={() => 
-            navigation.navigate('Generation', {index: index+1, title: text})
+        <TouchableOpacity style={styles.Container} onPress={() =>
+            navigation.navigate('Generation', { index: index + 1, title: text })
         }>
             <Text style={styles.Text}>Geração {text}</Text>
         </TouchableOpacity>

@@ -15,12 +15,12 @@ Home = ({ navigation }) => {
     const SearchList = async () => {
         setIsloading(true);
         await Api.get('https://pokeapi.co/api/v2/pokedex/')
-        .then((response) => {
-            const listGeneration = response.data.results;
-            setList(listGeneration);
-        })        
+            .then((response) => {
+                const listGeneration = response.data.results;
+                setList(listGeneration);
+            })
         setIsloading(false);
-}
+    }
 
     if (isLoading) {
         return (
@@ -33,7 +33,7 @@ Home = ({ navigation }) => {
     return (
         <View style={styles.Container}>
             <ScrollView style={styles.List}>
-                {<RenderList list={list} navigation={navigation}/>}
+                {<RenderList list={list} navigation={navigation} />}
             </ScrollView>
         </View>
     );
