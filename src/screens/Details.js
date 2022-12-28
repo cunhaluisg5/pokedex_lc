@@ -59,7 +59,10 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         fontSize: 15,
         backgroundColor: '#FFB6C1',
-        padding: 10
+        padding: 10,
+        borderColor: '#000000',
+        borderTopWidth: 1,
+        borderBottomWidth: 2
     },
     Indicator: {
         flex: 1,

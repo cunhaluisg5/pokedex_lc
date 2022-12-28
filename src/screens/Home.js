@@ -42,21 +42,17 @@ Home = ({ navigation }) => {
 const styles = StyleSheet.create({
     Container: {
         flex: 1,
-        backgroundColor: '#0000ff',
+        backgroundColor: '#DC143C',
     },
     List: {
-        backgroundColor: '#87CEFA',
+        backgroundColor: '#DC143C',
         marginTop: 40,
-        marginBottom: 20,
-        marginLeft: 10,
-        marginRight: 10,
-        padding: 20
     },
     Indicator: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#ffff00',
+        backgroundColor: '#DC143C',
     },
 });
 
